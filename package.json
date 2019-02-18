@@ -1,13 +1,13 @@
 {
   "name": "acl",
-  "version": "0.4.11",
+  "version": "0.5.0",
   "description": "An Access Control List module, based on Redis with Express middleware support",
   "keywords": [
     "middleware",
     "acl",
     "web"
   ],
-  "repository": "git://github.com/optimalbits/node_acl.git",
+  "repository": "https://github.com/coptercam/node_acl.git",
   "author": "Manuel Astudillo <manuel@optimalbits.com>",
   "homepage": "https://github.com/optimalbits/node_acl",
   "engines": {
@@ -18,7 +18,7 @@
     "async": "^2.1.4",
     "bluebird": "^3.0.2",
     "lodash": "^4.17.3",
-    "mongodb": "^3.1.1",
+    "mongodb": "^3.1.3",
     "redis": "^2.2.5"
   },
   "devDependencies": {
