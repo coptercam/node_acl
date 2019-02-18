@@ -12,7 +12,7 @@ for admin kind of functionality.
 
 A Redis, MongoDB and In-Memory based backends are provided built-in in the module. There are other third party backends such as [*knex*](https://github.com/christophertrudel/node_acl_knex) based, [*firebase*](https://github.com/tonila/node_acl_firebase) and [*elasticsearch*](https://github.com/adnanesaghir/acl-elasticsearch-backend). There is also an alternative memory backend that supports [*regexps*](https://github.com/futurechan/node_acl-mem-regexp).
 
-Follow [manast](http://twitter.com/manast) for news and updates regarding this library.
+UPDATE:  This repo was forked and modified to work with Mongo DB v3.1+
 
 ## Status
 
@@ -31,10 +31,22 @@ Follow [manast](http://twitter.com/manast) for news and updates regarding this l
 
 ## Installation
 
-Using npm:
+Edit your package.json file and insert the following as a dependency.
+
+```
+"acl": "https://github.com/coptercam/node_acl#master"
+```
+
+Then run npm:
 
 ```javascript
-npm install acl
+npm install
+```
+
+or run yarn:
+
+```javascript
+yarn install
 ```
 
 ## Documentation
@@ -62,16 +74,31 @@ npm install acl
 Create your acl module by requiring it and instantiating it with a valid backend instance:
 
 ```javascript
-var acl = require('acl');
+var node_acl = require('acl');
 
 // Using redis backend
-acl = new acl(new acl.redisBackend(redisClient, prefix));
+acl = new node_acl(new acl.redisBackend(redisClient, prefix));
 
 // Or Using the memory backend
-acl = new acl(new acl.memoryBackend());
+acl = new node_acl(new acl.memoryBackend());
 
 // Or Using the mongodb backend
-acl = new acl(new acl.mongodbBackend(dbInstance, prefix));
+acl = new node_acl(new acl.mongodbBackend(dbInstance, prefix));
+```
+```
+// Update on using mongodb backend
+mongodb.connect(dbConnectionString, { useNewUrlParser: true })
+    .then((client) => {
+        var db = client.db('your db name goes here); 
+        aclDb = client;
+        acl = new node_acl(new node_acl.mongodbBackend(db, '_acl_'));
+    })
+    .catch((error) => {
+        if (error) {
+            console.log('ACL DB connection failed');
+            throw error;
+        }
+    });
 ```
 
 All the following functions return a promise or optionally take a callback with
