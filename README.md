@@ -86,7 +86,7 @@ acl = new node_acl(new acl.memoryBackend());
 acl = new node_acl(new acl.mongodbBackend(dbInstance, prefix));
 ```
 
-```javascript
+```
 // Update on using mongodb backend
 mongodb.connect(dbConnectionString, { useNewUrlParser: true })
     .then((client) => {
