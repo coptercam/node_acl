@@ -33,7 +33,7 @@ UPDATE:  This repo was forked and modified to work with Mongo DB v3.1+
 
 Edit your package.json file and insert the following as a dependency.
 
-```
+```javascript
 "acl": "https://github.com/coptercam/node_acl#master"
 ```
 
@@ -85,7 +85,8 @@ acl = new node_acl(new acl.memoryBackend());
 // Or Using the mongodb backend
 acl = new node_acl(new acl.mongodbBackend(dbInstance, prefix));
 ```
-```
+
+```javascript
 // Update on using mongodb backend
 mongodb.connect(dbConnectionString, { useNewUrlParser: true })
     .then((client) => {
